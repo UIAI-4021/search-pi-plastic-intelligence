@@ -1,35 +1,74 @@
 import heapq
 
+class Graph:
+    def __init__(self, graph_dict = None, directed = True) :
+        self.graph_dict = graph_dict or {}
+        self.directed = directed
+    def get(self, a, b=None) :
+        links = self.graph_dict.setdefault(a,{})
+        if b is None:
+            return links
+        else:
+            return links.get(b)
+class Problem(object):
+    def __init__(self, initial, goal = None):
+        self.initial = initial
+        self.goal = goal
+    def actions(self, state):
+        raise NotImplementedError
+    def result(self, state, action):
+        raise NotImplementedError
+    def goal_test(self, state):
+        if isinstance(self.goal, list):
+            return is_in(state, self.goal)
+        else:
+            return state == self.goal
+    def path_cost(self, c, state1, action, state2):
+        return c + 1 
+    class Node:
+        def __init__(self, state, parent = None, action = None, path_cost = 0):
+            self.state = state
+            self.parent = parent
+            self.action = action
+            self.path_cost = path_cost
+            self.depth = 0
+            if parent:
+                self.depth = parent.depth + 1
+        def __repr__(self) :
+            return "<Node {}>".format(self.state)
+        def expand(self, problem):
+            return [self.child_node(Problem, action)
+                    for action in problem.actions(self.state)]
+        def child_node(self, problem, action):
+            next_state = problem.result(self.state, action)
+            new_cost = problem.path_cost(self.path_cost, self.state. action, next_state)
+            next_node = Node(next_state, self, action, new_cost)
+            return next_node 
+        def path(self):
+            node, path_back = self, []
+            while node:
+                path_back.append(node)
+                node = node.parent
+            return list(reversed(path_back))
+        def solution(self):
+            return [node.state for node in self.path()]
+            
+
+        
+           
+                     
+
+
+
+
+
+
+
+
 def a_star(graph, start, goal):
-    open_list = [(0, start)]  # Priority queue of nodes to explore (f-value, node)
-    came_from = {}  # To keep track of the parent node for each node
-    g_values = {city: float('inf') for city in graph}  # g(n) values for nodes, initially set to infinity
-    g_values[start] = 0
-    f_values = {city: float('inf') for city in graph}  # f(n) values for nodes, initially set to infinity
-    f_values[start] = h(start, goal)  # Calculate h(n) for the starting node
+    
 
-    while open_list:
-        f, current_city = heapq.heappop(open_list)
-
-        if current_city == goal:
-            return reconstruct_path(came_from, current_city)
-
-        for neighbor, distance in graph[current_city]:
-            tentative_g = g_values[current_city] + distance
-
-            if tentative_g < g_values[neighbor]:
-                came_from[neighbor] = current_city
-                g_values[neighbor] = tentative_g
-                f_values[neighbor] = tentative_g + h(neighbor, goal)
-                heapq.heappush(open_list, (f_values[neighbor], neighbor))
-
-    return None  # No path found
-
-def h(city, goal):
-    # Heuristic function: You can use the straight-line distance (Euclidean distance) as an example
-    # Calculate the Euclidean distance between the coordinates of 'city' and 'goal'
-    # Replace the following line with your specific distance calculation
-    return euclidean_distance(city, goal)
+    
 
 def euclidean_distance(city1, city2):
     # Replace this with your actual distance calculation based on city coordinates or other data

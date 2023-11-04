@@ -10,3 +10,4 @@ print('Unrepeated data count', len(unrepeated_data))
 
 unrepeated_data.to_csv('train_data.csv')
 print('Done')
+print("kiane majlesi kooni")
