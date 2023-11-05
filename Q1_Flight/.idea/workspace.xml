@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1080310-d025-4bef-9369-de132e9ccf80" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Nodes.json" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Nodes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/data_to_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data/data_to_json.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -157,6 +155,8 @@
       <workItem from="1698689786391" duration="2516000" />
       <workItem from="1698763626666" duration="24000" />
       <workItem from="1699129096301" duration="980000" />
+      <workItem from="1699131131175" duration="251000" />
+      <workItem from="1699131894792" duration="35000" />
     </task>
     <servers />
   </component>
