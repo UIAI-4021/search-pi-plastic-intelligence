@@ -3,17 +3,34 @@ import json
 
 graph = {}
 data = pd.read_csv('train_data.csv')
+print(data[data['DestinationAirport'] == 'Abraham Lincoln Capital Airport'])
 
 for i in range(len(data)) :
     row = data.iloc[i]
-    if row.SourceAirport not in graph.keys() :
-        graph[row.SourceAirport] = {}
+    source = row.SourceAirport
+    target = row.DestinationAirport
+    distance = row.Distance
 
-    if row.SourceAirport in graph.keys() :
+    if source not in graph.keys() :
+        graph[source] = {}
 
-        if row.DestinationAirport not in graph[row.SourceAirport].keys():
-            graph[row.SourceAirport][row.DestinationAirport] = row.Distance
+    if source in graph.keys() :
 
+        if target not in graph[source].keys():
+            graph[source][target] = distance
+
+    if target not in graph.keys():
+        graph[target] = {}
+
+    if target in graph.keys():
+
+        if source not in graph[target].keys():
+            graph[target][source] = distance
+
+
+
+
+print(graph['Abraham Lincoln Capital Airport'])
 
 with open('Nodes.json', 'w') as file :
     json.dump(graph, file)

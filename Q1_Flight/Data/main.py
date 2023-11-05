@@ -20,7 +20,7 @@ class Problem(object):
         raise NotImplementedError
     def goal_test(self, state):
         if isinstance(self.goal, list):
-            return is_in(state, self.goal)
+            return isin(state, self.goal)
         else:
             return state == self.goal
     def path_cost(self, c, state1, action, state2):
@@ -85,7 +85,7 @@ def astar_search(problem):
         entry_num = closest_node_entry_num(nodelist)
         min_dist = list(nodelist[entry_num].keys())[0]
         closest_node = nodelist[entry_num][min_dist]
-        print("Current Nodes : "nodelist)
+        print("Current Nodes : ", nodelist)
         print("min dist", min_dist, ", closest node = ", closest_node)
         input('Press enter to continue...')
         if problem.goal_test(closest_node.state):
@@ -96,7 +96,7 @@ def astar_search(problem):
             hval = problem.h(child)
             nodelist.append({gval + hval : child})
 
-<<<<<<< Updated upstream
+
 class Graph:
     def __init__(self, graph_dict = None, directed = True) :
         self.graph_dict = graph_dict or {}
@@ -163,9 +163,7 @@ class Problem(object):
 
 
 def a_star(graph, start, goal):
-    
-
-=======
+    pass
                      
 
 
