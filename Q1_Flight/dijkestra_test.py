@@ -82,7 +82,7 @@ def dijkstra_algorithm(graph, start_node):
     return previous_nodes, shortest_path
 
 
-def print_result(previous_nodes, shortest_path, start_node, target_node):
+def dij_path_result(previous_nodes, shortest_path, start_node, target_node):
     path = []
     node = target_node
 
@@ -93,12 +93,11 @@ def print_result(previous_nodes, shortest_path, start_node, target_node):
     # Add the start node manually
     path.append(start_node)
 
-    print("We found the following best path with a value of {}.".format(shortest_path[target_node]))
-    print(" -> ".join(reversed(path)))
+    return list(reversed(path))
 
 
 # main ----------------------------------------------------------------------------------------------------------
-with open('Nodes.json', 'r') as file :
+with open('Data/Nodes.json', 'r') as file :
     graph_data = json.load(file)
 
 airports = list(graph_data.keys())
@@ -107,6 +106,8 @@ nodes = airports
 
 init_graph = graph_data
 graph = Graph(nodes, init_graph)
-previous_nodes, shortest_path = dijkstra_algorithm(graph=graph, start_node="Sharjah International Airport")
+previous_nodes, shortest_path = dijkstra_algorithm(graph=graph, start_node="Imam Khomeini International Airport")
 
-print_result(previous_nodes, shortest_path, start_node="Sharjah International Airport", target_node="Abu Dhabi International Airport")
+print(dij_path_result(previous_nodes, shortest_path,
+                   start_node="Imam Khomeini International Airport",
+                   target_node="Hartsfield Jackson Atlanta International Airport"))
