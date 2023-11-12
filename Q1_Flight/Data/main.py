@@ -1,5 +1,8 @@
 import heapq
 import math
+import csvloct_to_dictionary as ctd
+import json
+
 infinity = float('inf')
 class Graph:
     def __init__(self, graph_dict = None, directed = True) :
@@ -12,8 +15,6 @@ class Graph:
         else:
             return links.get(b)
         
-
-
 class Problem(object):
     def __init__(self, initial, goal = None):
         self.initial = initial
@@ -36,8 +37,6 @@ class Problem(object):
     def path_cost(self, c, state1, action, state2):
         return c + 1 
     
-
-
 class Node:
     def __init__(self, state, parent = None, action = None, path_cost = 0):
         self.state = state
@@ -67,9 +66,12 @@ class Node:
         return [node.state for node in self.path()]
             
 def haversine_distance(coord1, coord2):
-    # Coordinates are given as (latitude, longitude) pairs in degrees
-    lat1, lon1 = coord1
-    lat2, lon2 = coord2
+    print(coord1)
+    # Coordinates are given as (latitude, longitude) pairs in 
+    lat1 = coord1['latitude']
+    lon1 = coord1['longitude']
+    lat2 = coord2['latitude']
+    lon2 = coord2['longitude']
     
     # Radius of the Earth in kilometers
     R = 6371.0
@@ -110,9 +112,6 @@ class GraphProblem(Problem):
         else:
             return float('inf')
         
-
-        
-        
 def closest_node_entry_num(nodelist):
     min_index = 0
     min_dist = list(nodelist[0].keys())[0]
@@ -122,6 +121,7 @@ def closest_node_entry_num(nodelist):
             min_index = n
             min_dist = dist
     return min_index
+
 
 
 def astar_search(problem):
@@ -146,12 +146,21 @@ def astar_search(problem):
             gval = child.path_cost
             hval = problem.h(child)
             nodelist.append({gval + hval : child})
+def UndirectedGraph(graph_dict):
+    return Graph(graph_dict = graph_dict, directed= False)
+with open('Q1_Flight/Data/Nodes.json', 'r') as json_file:
+    # Load JSON data into a Python dictionary
+    data = json.load(json_file)
+    
 
-
-
-
-
-
+def UndirectedGraph(graph_dict= None):
+    return Graph(graph_dict = graph_dict, directed = False)
+earth_map = UndirectedGraph(data)
+earth_map.locations = ctd.source_locations
+earth_problem = GraphProblem('Imam Khomeini International Airport','Raleigh Durham International Airport', earth_map )
+resultnode = astar_search(earth_problem)
+print('path:', resultnode.path() )
+print('000000000000000000000000000000000000000000000000000000000000')
 
 
 
