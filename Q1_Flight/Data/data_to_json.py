@@ -18,3 +18,4 @@ for i in range(len(data)) :
 with open('Nodes.json', 'w') as file :
     json.dump(graph, file)
 
+directed_graph = {}

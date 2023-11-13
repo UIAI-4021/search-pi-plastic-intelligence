@@ -96,6 +96,7 @@ def dij_path_result(previous_nodes, shortest_path, start_node, target_node):
     return list(reversed(path))
 
 
+
 # main ----------------------------------------------------------------------------------------------------------
 with open('Data/Nodes.json', 'r') as file :
     graph_data = json.load(file)
@@ -110,4 +111,4 @@ previous_nodes, shortest_path = dijkstra_algorithm(graph=graph, start_node="Imam
 
 print(dij_path_result(previous_nodes, shortest_path,
                    start_node="Imam Khomeini International Airport",
-                   target_node="Hartsfield Jackson Atlanta International Airport"))
+                   target_node="Raleigh Durham International Airport"))
