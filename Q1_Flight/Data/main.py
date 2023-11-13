@@ -2,6 +2,7 @@ import heapq
 import math
 import csvloct_to_dictionary as ctd
 import json
+import result_to_text as rtt
 
 infinity = float('inf')
 class Graph:
@@ -66,7 +67,6 @@ class Node:
         return [node.state for node in self.path()]
             
 def haversine_distance(coord1, coord2):
-    print(coord1)
     # Coordinates are given as (latitude, longitude) pairs in 
     lat1 = coord1['latitude']
     lon1 = coord1['longitude']
@@ -136,9 +136,7 @@ def astar_search(problem):
         entry_num = closest_node_entry_num(nodelist)
         min_dist = list(nodelist[entry_num].keys())[0]
         closest_node = nodelist[entry_num][min_dist]
-        print("Current Nodes : ", nodelist)
-        print("min dist", min_dist, ", closest node = ", closest_node)
-        input('Press enter to continue...')
+        
         if problem.goal_test(closest_node.state):
             return closest_node
         nodelist.pop(entry_num)
@@ -160,11 +158,14 @@ earth_map.locations = ctd.source_locations
 earth_problem = GraphProblem('Imam Khomeini International Airport','Raleigh Durham International Airport', earth_map )
 resultnode = astar_search(earth_problem)
 print('path:', resultnode.path() )
-print('000000000000000000000000000000000000000000000000000000000000')
+rn = resultnode.path()
+
+a_star_result = [ item.state for item in rn ]
+print(a_star_result)
+
+rtt.text_file_generator('a_star_alg', 50, a_star_result)
 
 
-
-
-
+print('done')
 
 

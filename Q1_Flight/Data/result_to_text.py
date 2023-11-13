@@ -1,7 +1,7 @@
 import pandas
 
 def text_file_generator(algorithm_name, execution_time , path_list) :
-    flight_data = pandas.read_csv('Data/Flight_Data.csv')
+    flight_data = pandas.read_csv('Q1_Flight/Data/Flight_Data.csv')
     pair_airports = [[path_list[i], path_list[i+1]] for i in range(len(path_list) - 1)]
 
     print(pair_airports)
@@ -61,7 +61,7 @@ def text_file_generator(algorithm_name, execution_time , path_list) :
     text.append(f'Total Price : {str(total_price)[:6]} $\n')
     text.append(f'Total Duration : {str(total_duration)[:7]} km\n')
 
-    with open('test.txt', 'w') as f :
+    with open('Q1_Flight/Data/test.txt', 'w') as f :
         f.writelines(text)
 
 
