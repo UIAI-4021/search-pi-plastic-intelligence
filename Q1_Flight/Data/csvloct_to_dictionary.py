@@ -1,11 +1,9 @@
-import csv
 import pandas as pd
-import csvloct_to_dictionary
 # Define an empty dictionary to store latitude and longitude values
 source_locations = {}
 
 # Read data from the CSV file
-data = pd.read_csv('Q1_Flight/Data/Flight_Data.csv')
+data = pd.read_csv('Flight_Data.csv')
     
     # Skip the header row if it exists
 

@@ -2,7 +2,7 @@ import json
 import sys
 
 
-class Graph(object):
+class Graph2(object):
     def __init__(self, nodes, init_graph):
         self.nodes = nodes
         self.graph = self.construct_graph(nodes, init_graph)
@@ -98,7 +98,7 @@ def dij_path_result(previous_nodes, shortest_path, start_node, target_node):
 
 
 # main ----------------------------------------------------------------------------------------------------------
-with open('Data/Nodes.json', 'r') as file :
+with open('Nodes.json', 'r') as file :
     graph_data = json.load(file)
 
 airports = list(graph_data.keys())
@@ -106,9 +106,10 @@ airports = list(graph_data.keys())
 nodes = airports
 
 init_graph = graph_data
-graph = Graph(nodes, init_graph)
+graph = Graph2(nodes, init_graph)
 previous_nodes, shortest_path = dijkstra_algorithm(graph=graph, start_node="Imam Khomeini International Airport")
 
-print(dij_path_result(previous_nodes, shortest_path,
+dijkestra_result = dij_path_result(previous_nodes, shortest_path,
                    start_node="Imam Khomeini International Airport",
-                   target_node="Raleigh Durham International Airport"))
+                   target_node="Raleigh Durham International Airport")
+

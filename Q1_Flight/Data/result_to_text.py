@@ -1,10 +1,9 @@
 import pandas
 
 def text_file_generator(algorithm_name, execution_time , path_list) :
-    flight_data = pandas.read_csv('Q1_Flight/Data/Flight_Data.csv')
+    flight_data = pandas.read_csv('Flight_Data.csv')
     pair_airports = [[path_list[i], path_list[i+1]] for i in range(len(path_list) - 1)]
 
-    print(pair_airports)
 
     for item in pair_airports :
         for i in range(len(flight_data)) :
@@ -61,10 +60,7 @@ def text_file_generator(algorithm_name, execution_time , path_list) :
     text.append(f'Total Price : {str(total_price)[:6]} $\n')
     text.append(f'Total Duration : {str(total_duration)[:7]} km\n')
 
-    with open('Q1_Flight/Data/test.txt', 'w') as f :
+
+    with open(f'PI-UIAI4021-PRI-Q1-{algorithm_name}.txt', 'w') as f :
         f.writelines(text)
 
-
-
-
-text_file_generator('A Star', 312,  ['Imam Khomeini International Airport', 'Atatürk International Airport', 'Washington Dulles International Airport', 'Hartsfield Jackson Atlanta International Airport'])

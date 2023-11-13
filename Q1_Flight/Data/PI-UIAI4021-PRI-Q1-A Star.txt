@@ -1,0 +1,27 @@
+A Star
+Execution Time : 7.406495200004429s
+.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+Flight #1  (Turkish Airlines)
+From :  Imam Khomeini International Airport - Tehran, Iran
+To :  Atatürk International Airport - Istanbul, Turkey
+Duration : 2040km
+Time : 3.03 h
+Price : 990.48 $
+--------------------------------------------
+Flight #1  (Turkish Airlines)
+From :  Atatürk International Airport - Istanbul, Turkey
+To :  John F Kennedy International Airport - New York, United States
+Duration : 8051km
+Time : 10.5 h
+Price : 3995.8 $
+--------------------------------------------
+Flight #1  (American Airlines)
+From :  John F Kennedy International Airport - New York, United States
+To :  Raleigh Durham International Airport - Raleigh-durham, United States
+Duration : 686.km
+Time : 1.35 h
+Price : 313.25 $
+--------------------------------------------
+Total Time : 14.8 h
+Total Price : 5299.6 $
+Total Duration : 10779.2 km
