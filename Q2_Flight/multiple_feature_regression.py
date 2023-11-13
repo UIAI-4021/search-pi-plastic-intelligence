@@ -23,18 +23,33 @@ def data_preprocessor():
     return data
 
 data = data_preprocessor()
-x_train = np.array(data.iloc[:, 0:6])
-y_train = np.array(data.iloc[:, [6]])
-y_train = y_train.reshape(1, len(y_train))[0]
+x = np.array(data.iloc[:, 0:6])
+y = np.array(data.iloc[:, [6]])
+y = y.reshape(1, len(y))[0]
 
+# Combine X and Y into a single array to shuffle them together
+data = np.column_stack((x, y))
 
+# Set a seed for reproducibility
+np.random.seed(42)
+
+# Shuffle the data
+np.random.shuffle(data)
+
+# Calculate the index to split the data into training and testing sets
+split_index = int(0.8 * len(data))
+
+# Split the data
+train_data, test_data = data[:split_index, :], data[split_index:, :]
+
+# Separate examples and targets for training and testing sets
+x_train, y_train = train_data[:, :-1], train_data[:, -1]
+x_test, y_test = test_data[:, :-1], test_data[:, -1]
 
 def mse(X, y, w, b):
-
     m = X.shape[0]
     cost = 0.0
     for i in range(m):
-
         f_wb_i = np.dot(X[i], w) + b  # (n,)(n,) = scalar (see np.dot)
         cost = cost + (f_wb_i - y[i]) ** 2  # scalar
     cost = cost / (2 * m)  # scalar
@@ -53,7 +68,7 @@ def mae(X, y, w, b):
 
 
 class MultipleLinearRegression:
-    def __init__(self, learning_rate=0.01, n_iterations=5000):
+    def __init__(self, learning_rate=0.01, n_iterations=2000):
         self.learning_rate = learning_rate
         self.n_iterations = n_iterations
         self.weights = None
@@ -98,8 +113,17 @@ model.fit(X, y)
 predictions = model.predict(x_train)
 print('\n')
 
-print('R2 Score : ', r2_score(y_train, predictions))
-print('MSE : ', mse(x_train, y_train, model.weights, model.bias))
-print('MAE : ', mae(x_train, y_train, model.weights, model.bias))
-print('RMSE : ', (mse(x_train, y_train, model.weights, model.bias))**0.5)
+print('R2 Score train : ', r2_score(y_train, predictions))
+print('TRAIN MSE : ', mse(x_train, y_train, model.weights, model.bias))
+print('TRAIN MAE : ', mae(x_train, y_train, model.weights, model.bias))
+print('TRAIN RMSE : ', (mse(x_train, y_train, model.weights, model.bias))**0.5)
+
+predictions = model.predict(x_test)
+print('\n')
+print('R2 Score test : ', r2_score(y_test, predictions))
+print('TEST MSE : ', mse(x_test, y_test, model.weights, model.bias))
+print('TEST MAE : ', mae(x_test, y_test, model.weights, model.bias))
+print('TEST RMSE : ', (mse(x_test, y_test, model.weights, model.bias))**0.5)
+
+
 
